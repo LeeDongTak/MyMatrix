@@ -1,0 +1,9 @@
+exports.jwtSecret = "asd;lfkajsdf;oliqawjhfaspodifjas;lkvna;woeifnwop;ierfh29038fhvaweri9ou8fhq0p9owe8hrfq02n98ru2p39qnf4 8ovryuq34b0v 98q34yvbpo98q34yb50vqo2834y5vbq9p38y5vubq209385vybuq32098f5vbq234po8f5vq34p985vq3b9opg85237q4b9p5gv83q475v9q8347b5vp9q342875gvq3p9487523094857yv0927456t2394o8571-048657p2934857vn2p934875vyb 2439op5v b7n2304985v7yn234095v87n23409v587n234095v237n0vp5239847nv502346vn52035987tv98tv72n30985v7n2304958v72340958v723095v8273n05v9237n05v23lfasd;lfkjasodpifjawpoifjawrpoifjwaf4awserfgawerpfogjkarpofj[0er9fja0w498ut0wa49ghf03458tugq038rtu3q4-089tu23q4908yq34908ty-uqhwer0c8viyu2etbrv983y4utrbv9834tybv394ty8bv3948tybv3498tybv3497tybv3428yrvb24r938yvb2398reycb2197erycb34t-ionbjm509yuvhb    qs78tzdfc   wa6txbqerfo[b,ytj][m,rh[opibvnwqd98yxgbwqdcvnm3rg]pnl,.6ui]-[pomk,5-h9ibhnwef98cyvbqefoubvn4tyhpi0o9jnm4-9uvbqwef9vnerh[pom,ytj[0oinmerg-9ibnm46=u-ojhk34t-09ibvjnm=4tu-09jnm530t-ibnm=406u9jnmb34-t0ibn5=76i-0jkm4=y5-9njm46uip,-4yobnmv24trf-ob,46u]['k,./79\p][l.-0nbjkwe=08vj35t[yojm5y]i-onm3tr0-ivhn34tr9-ibm5yj]-[om,60=uibnwqd09ucbqerfpbvn etry[pkonim4to-iubnvqwp9cvub2enqrphgokn35my-=9ub2berv-09cu13rg2oughnpofauhqpo;uifhasd;ljfhasdlfhasd;lkfjh;alsdkfj;alsdkfja;oiwhfolduicvty0szf9fghqekwjrdbsdakljchasdl;kfjdkn.,mcnZD>X<MCnZX>asdlkjfbvasfdpviuhgpiuwepi9ouqgwerfghawergf5qeg+98aer74g+65es4g6s5er4ge6ws84gsd6f5g4vse6t8g4bwse6t8g4bse6t8g4set6r8g4set68g4bsed6f8b4se68rbv4se6b84se6r8gb4se8g4serf6gvaer4g68vsaer48rr8frf8r4f8r4f6a8wr4fgs6e8fb4sd68gvasffga6468486asfasfsergfasergawrfjaerwshfliuawrehflaiouwhflaweoiuyhflaweuiohflweqkujhfalwekujfh<Mcn";
+
+exports.databaseSecret = {
+    host: "www.leedschedule.shop",
+    user: "sunny5796",
+    port: "3306",
+    password: "rkatkgkqslek12@",
+    database: "MyTodoDB",
+}
