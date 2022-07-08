@@ -3,7 +3,7 @@ import './css/jumbotron.css';
 import './css/matrix.css';
 import './css/footer.css';
 import SignIn from './signin';
-import { Link,Route,Switch } from 'react-router-dom';
+import { Link,Routes,Route,Switch } from 'react-router-dom';
 
 
 
@@ -13,14 +13,10 @@ function App() {
     <div className="App">
         <Header />
 
-        <Switch>
-            <Route exact path="/" basename=""s>
-                <Matrix />
-            </Route>
-            <Route path="/signin">
-                <SignIn/>
-            </Route>
-        </Switch>
+        <Routes>
+            <Route path="/" element={<Matrix />} />
+            <Route path="/signin" element={<SignIn/>} />
+        </Routes>
 
         <Footer />
     </div>
@@ -64,16 +60,7 @@ function Header(){
                 {/* <!-- sign_container --> */}
             </div>
             {/* <!-- header_container --> */}
-        </div>
-    </div>
-  );
-}
-
-// matrix
-function Matrix(){
-  return(
-    <div>
-        <div className="inner">
+            
             <div className="jumbotron_container">
                 <div className="jumbotron_item_main">
                     <div className="jumbotron_item_main_message">
@@ -89,6 +76,16 @@ function Matrix(){
                 </div>
                 {/* <!-- jumbotron_item_sub --> */}
             </div>
+        </div>
+    </div>
+  );
+}
+
+// matrix
+function Matrix(){
+  return(
+    <div>
+        <div className="inner">
             {/* <!-- jumbotron_container --> */}
 
             <div class="matrix_container">
