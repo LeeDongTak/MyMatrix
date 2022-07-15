@@ -3,19 +3,25 @@ import './css/jumbotron.css';
 import './css/matrix.css';
 import './css/footer.css';
 import SignIn from './signin';
-import { Link,Routes,Route,Switch } from 'react-router-dom';
+import SignUp from './signup';
+import ErrorPage from './errorpage';
+import { Routes,Route, useNavigate } from 'react-router-dom';
 
 
 
 
 function App() {
+    const navigate = useNavigate();
+
   return (
     <div className="App">
-        <Header />
+        <Header  navigate={navigate} />
 
         <Routes>
             <Route path="/" element={<Matrix />} />
-            <Route path="/signin" element={<SignIn/>} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="*" element={<ErrorPage />} />
         </Routes>
 
         <Footer />
@@ -24,21 +30,19 @@ function App() {
 }
 
 // Header
-function Header(){
+function Header(props){
   return (
     <div>
         <div className="inner">
             <div className="header_container">
-                <div className="title">
+                <div className="title" onClick={()=>{ props.navigate('/') }}>
                     <a href="#">성공일정</a>
                 </div>
                 {/* <!-- title --> */}
                 <div class="sign_container">
                     <div className="unsigned">
-                        <Link to={'/signin'}>
-                            <div className="sign_in"><a href="#">로그인</a></div>
-                        </Link>
-                        <div className="sign_up"><a href="#">회원가입</a></div>
+                        <div className="sign_in" onClick={()=>{ props.navigate('/signin') }}><a href="#">로그인</a></div>
+                        <div className="sign_up" onClick={()=>{ props.navigate('/signup') }}><a href="#">회원가입</a></div>
                     </div>
                     {/* <!-- unsigned --> */}
                     <div className="signed hidden">
@@ -60,7 +64,16 @@ function Header(){
                 {/* <!-- sign_container --> */}
             </div>
             {/* <!-- header_container --> */}
-            
+        </div>
+    </div>
+  );
+}
+
+// matrix
+function Matrix(){
+  return(
+    <div>
+        <div className="inner"> 
             <div className="jumbotron_container">
                 <div className="jumbotron_item_main">
                     <div className="jumbotron_item_main_message">
@@ -76,16 +89,6 @@ function Header(){
                 </div>
                 {/* <!-- jumbotron_item_sub --> */}
             </div>
-        </div>
-    </div>
-  );
-}
-
-// matrix
-function Matrix(){
-  return(
-    <div>
-        <div className="inner">
             {/* <!-- jumbotron_container --> */}
 
             <div class="matrix_container">
