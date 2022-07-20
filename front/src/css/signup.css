@@ -11,7 +11,7 @@
     text-align: center;
 }
 .signup_container h1 {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
 }
 
 .signup_form{
@@ -45,7 +45,7 @@
     color: #000;
 }
 
-@media only all and (max-width: 400px){
+@media only all and (max-width: 500px){
     html {
         font-size: 8px;
     }
