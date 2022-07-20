@@ -1,5 +1,6 @@
-main {
+#Signup_wrap {
     position: relative;
+    height: 100vh;
 }
 .signup_container {
     width: 100%;

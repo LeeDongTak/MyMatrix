@@ -1,28 +1,5 @@
-/* 로컬라이징 */
-:root{
-    --light-gray : #f4f4f4;
-    --main_blue : #4aa8d8;
-    --dark_gray : #606060;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html{
-    font-size: 12px;
-}
-a{
-    text-decoration: none;
-    color: #000000;
-}
-
-.blue {
-    color: var(--main_blue);
-}
-
 /* 스타일 */
-header{
+#header{
     background: var(--light-gray);
 }
 .header_container{

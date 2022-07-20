@@ -1,3 +1,4 @@
+import './css/common.css';
 import './css/header.css';
 import './css/jumbotron.css';
 import './css/matrix.css';
@@ -32,7 +33,7 @@ function App() {
 // Header
 function Header(props){
   return (
-    <div>
+    <div id='header'>
         <div className="inner">
             <div className="header_container">
                 <div className="title" onClick={()=>{ props.navigate('/') }}>
@@ -72,7 +73,7 @@ function Header(props){
 // matrix
 function Matrix(){
   return(
-    <div>
+    <div id='main'>
         <div className="inner"> 
             <div className="jumbotron_container">
                 <div className="jumbotron_item_main">
@@ -148,7 +149,7 @@ function Matrix(){
 // footer
 function Footer(){
   return (
-    <div>
+    <div id='footer'>
         <div className="inner">
             <div className="footer_container">
                 <div className="author">개발자 : 홍길동</div>

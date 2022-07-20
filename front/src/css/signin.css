@@ -1,5 +1,5 @@
-main .inner {
-    height: 100%;
+#Signin_wrap .inner {
+    height: 100vh;
 }
 .signin_container{
     height: 100%;
@@ -17,6 +17,7 @@ main .inner {
     flex-direction: column;
     align-items: center;
     margin: 2rem auto 0;
+    border:1px solid #000;
 }
 .signin_form > input {
     width: 100%;
@@ -38,6 +39,7 @@ main .inner {
 }
 .signup_container {
     width: 100%;
+    margin-top: 100px;
     text-align: center;
 }
 #signup {
