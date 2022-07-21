@@ -1,1 +1,1 @@
-const url = 'https://www.leedschedule.shop';
+const url = 'http://localhost:3000';

@@ -19,7 +19,7 @@ function App() {
         <Header  navigate={navigate} />
 
         <Routes>
-            <Route path="/" element={<Matrix />} />
+            <Route path="/front/build/index.html" element={<Matrix />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<ErrorPage />} />
@@ -36,7 +36,7 @@ function Header(props){
     <div id='header'>
         <div className="inner">
             <div className="header_container">
-                <div className="title" onClick={()=>{ props.navigate('/') }}>
+                <div className="title" onClick={()=>{ props.navigate('/front/build/index.html') }}>
                     <a href="#">성공일정</a>
                 </div>
                 {/* <!-- title --> */}
