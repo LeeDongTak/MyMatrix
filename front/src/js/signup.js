@@ -17,6 +17,7 @@ inputEmail.addEventListener("input", isValidEmail);
 const inputPassword = document.getElementById('password');
 const passwordMessage = document.querySelector('div.password_message');
 inputPassword.addEventListener("input", isValidPassword);
+console.log(passwordMessage);
 
 // 비밀번호 확인 
 const inputPasswordConfirm = document.getElementById('password_confirm');

@@ -32,8 +32,9 @@
 .message{
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    visibility: hidden;
+    visibility: visible;
 }
+
 #signup {
     padding: 0;
     border: none;
