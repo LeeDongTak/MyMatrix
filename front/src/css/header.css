@@ -30,9 +30,6 @@
         margin: 0 auto;
     }
 }
-.hidden {
-    display: none;
-}
 /* 회원용 헤더 드롭다운 */
 .dropdown{
     position: relative;
