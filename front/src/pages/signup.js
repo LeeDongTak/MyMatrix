@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import '../css/common.css';
 import '../css/signup.css';
-import styled from 'styled-components';
+import { url } from '../js/common';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function SignUp(props){
+
+    // 패이지를 이동하기 위한 hook
+    const navigate = useNavigate();
 
     // 이메일
     const [inuptEmail,setinuptEmail] = useState('');
@@ -23,7 +28,7 @@ function SignUp(props){
     const [nicknameBloolean, setNicknameBoolean] = useState(false);
 
     // 이메일 형식 검사
-    function isValidEmail(event){
+    function isValidEmail(){
         const emailReg = 
             /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
         if(!inuptEmail){
@@ -61,7 +66,7 @@ function SignUp(props){
 
  
     // 비밀번호 확인 검사
-    function isValidPasswordConfirm(event){
+    function isValidPasswordConfirm(){
         
         if(!inputPasswordConfirm){
             return false;
@@ -79,7 +84,7 @@ function SignUp(props){
     },[inputPasswordConfirm]);
 
     // 닉네임 형식 검사
-    function isValidNickname(event){
+    function isValidNickname(){
         if(!inputNickname){
             return false;
         }else if(inputNickname.length < 2 || inputNickname.length > 10){
@@ -93,6 +98,48 @@ function SignUp(props){
     useEffect(()=>{
         isValidNickname();
     },[inputNickname]);
+
+
+    // ##########  회원가입 API 요청
+
+    async function signup(event){
+        const isVaildReq = 
+            isValidEmail() &&
+            isValidPassword() &&
+            isValidPasswordConfirm() &&
+            isValidNickname();
+
+        if(!isVaildReq){
+            alert("회원 정보를 확인해 주세요");
+        }
+        
+
+        const config = {
+            method: "post",
+            url: url + "/user",
+            data: {
+                email: inuptEmail,
+                password: inputPassword,
+                nickname: inputNickname
+            }
+        }
+        try {
+            const res = await axios(config);
+        
+            if(res.data.code === 400){
+                alert(res.data.message);
+                return false;
+            }
+            if(res.data.code === 200){
+                alert(res.data.message);
+                navigate('/signin');
+                return true;
+            }
+            
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
 
     return (
@@ -149,7 +196,7 @@ function SignUp(props){
                             </div>
                         }
                         
-                        <input type="button" value="회원가입" placeholder="회원가입" id="signup" />
+                        <input type="button" value="회원가입" placeholder="회원가입" id="signup" onClick={signup} />
                     </div>
                 </div>
             </div>
