@@ -150,51 +150,27 @@ function SignUp(props){
                     <div className="signup_form">
                         {/* 이메일 */}
                         <input type="text" placeholder="이메일" id="email" onChange={(e)=>{setinuptEmail(e.target.value)}} />
-                        {
-                           emailBloolean === true
-                            ? <div className="email_message message">
-                                이메일 형식으로 입력해 주세요
-                            </div>
-                            : <div className="email_message message" style={{visibility : "hidden"}}>
-                                이메일 형식으로 입력해 주세요
-                            </div>
-                        }
+                        <div className="email_message message" style={{visibility : emailBloolean === true ?"visible": "hidden"}}>
+                            이메일 형식으로 입력해 주세요
+                        </div>
                      
                         {/* 페스워드 */}
                         <input type="password" placeholder="비밀번호" id="password" onChange={(e)=>{setinputPassword(e.target.value)}} />
-                        {
-                           passwordBloolean === true
-                            ? <div className="password_message message">
-                                영문, 숫자, 특수문자(!@$%^*)조함 8자 이상으로 입력
-                            </div>
-                            : <div className="password_message message" style={{visibility : "hidden"}}>
-                                영문, 숫자, 특수문자(!@$%^*)조함 8자 이상으로 입력
-                            </div>
-                        }
+                        <div className="password_message message" style={{visibility : passwordBloolean === true ?"visible": "hidden"}}>
+                            영문, 숫자, 특수문자(!@$%^*)조함 8자 이상으로 입력
+                        </div>
                         
                         {/* 페스워드 확인 */}
                         <input type="password" placeholder="비밀번호확인" id="password_confirm" onChange={(e)=>{setinputPasswordConfirm(e.target.value)}} />
-                        {
-                           passwordConfirmBloolean === true
-                            ? <div className="password_confirm_message message">
-                                비밀번호가 맞지 않습니다. 
-                            </div>
-                            : <div className="password_confirm_message message" style={{visibility : "hidden"}}>
-                                비밀번호가 맞지 않습니다. 
-                            </div>
-                        }
+                        <div className="password_confirm_message message" style={{visibility : passwordConfirmBloolean === true ?"visible": "hidden"}}>
+                            비밀번호가 맞지 않습니다. 
+                        </div>
 
                         {/* 닉네임 */}
                         <input type="text" placeholder="닉네임" id="nickname" onChange={(e)=>{setinputNickname(e.target.value)}} />
-                        {
-                           nicknameBloolean === true
-                            ? <div className="nickname_message message">
-                                한글 or 영어 2 ~ 10자로 설정해주세요.
-                            </div>
-                            : <div className="nickname_message message" style={{visibility : "hidden"}}>
-                                한글 or 영어 2 ~ 10자로 설정해주세요.
-                            </div>
-                        }
+                        <div className="nickname_message message" style={{visibility : nicknameBloolean === true ?"visible": "hidden"}}>
+                            한글 or 영어 2 ~ 10자로 설정해주세요.
+                        </div>
                         
                         <input type="button" value="회원가입" placeholder="회원가입" id="signup" onClick={signup} />
                     </div>
