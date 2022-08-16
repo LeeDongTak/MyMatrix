@@ -17,7 +17,7 @@ import axios from 'axios';
 function App() {
     // 패이지를 이동하기 위한 hook
     const navigate = useNavigate();
-
+    
   return (
     <div className="App">
         <Header  navigate={navigate} />
@@ -36,11 +36,11 @@ function App() {
 
 // Header
 function Header(props){
+
     // 유저의 닉네임
     const [nickName, setNickName] = useState('');
     // 토큰 검사를 위한 true/false
-    const [nickNameBoolean, setNickNameBoolean] = useState(false);
-
+    let [nickNameBoolean, setNickNameBoolean] = useState(false);
 
     async function setHeader(){
         // 로컬 스토리지에 토큰 존재여부 검사
@@ -48,6 +48,7 @@ function Header(props){
         
         // 토큰이 없다면
         if(!token){
+            setNickNameBoolean(false);
             return;
         }
         const cnofig = {
@@ -57,20 +58,33 @@ function Header(props){
                 "x-access-token": token,
             }
         }
-        const res = await axios(cnofig);
-        if(res.data.code !== 200){
-            console.log("잘못된 토큰입니다. ");
-            setNickNameBoolean(false);
-            return;
+        try {
+            const res = await axios(cnofig);
+            if(res.data.code !== 200){
+                console.log("잘못된 토큰입니다. ");
+                setNickNameBoolean(false);
+                return;
+            } else {
+                // 토큰이 있다면
+                setNickNameBoolean(true);
+                setNickName(res.data.result.nickname);
+            }
+        } catch (err) {
+            console.error(err);
         }
-        // 토큰이 있다면
-        setNickNameBoolean(true);
-        setNickName(res.data.result.nickname);
     }
     useEffect(() => {
-       setHeader();       
-    },[]);
-
+       setHeader();  
+    });
+    
+    function logOut(){
+        setNickNameBoolean(false);
+        localStorage.removeItem("x-access-token");
+        props.navigate('/');
+    }
+    useEffect(() => {
+        logOut();  
+     },[]);
 
     return (
         <div id='header'>
@@ -81,18 +95,12 @@ function Header(props){
                     </div>
                     {/* <!-- title --> */}
                     <div className="sign_container">
-                        {
-                            nickNameBoolean === true 
-                            ?null
-                            :<div className="unsigned">
+                            <div className="unsigned" style={{display : nickNameBoolean === true ?"none": "flex"}} >
                                 <div className="sign_in" onClick={()=>{ props.navigate('/signin') }}><a href="#">로그인</a></div>
                                 <div className="sign_up" onClick={()=>{ props.navigate('/signup') }}><a href="#">회원가입</a></div>
                             </div>
-                            // unsigned 
-                        }
-                        {
-                            nickNameBoolean === true 
-                            ?<div className="signed hidden">
+                            {/* unsigned  */}
+                            <div className="signed" style={{display : nickNameBoolean === true ?"block": "none"}} >
                                 <div className="dropdown">
                                     <div className="dropdown_button">
                                         안녕하세요 <span className="nickname">{nickName}</span>님
@@ -100,15 +108,13 @@ function Header(props){
                                     </div>
                                     {/* dropdown_button */}
                                     <div className="dropdown_content">
-                                        <button id="sign_out" onClick={()=>{localStorage.removeItem("x-access-token")}} >로그아웃</button>
+                                        <button id="sign_out" onClick={logOut} >로그아웃</button>
                                     </div>
                                     {/* dropdownn_content */}
                                 </div>
                                 {/* dropdown */}
                             </div>
-                            // signed
-                            :null
-                        }
+                            {/* signed */}
                     </div>
                     {/* sign_container */}
                 </div>

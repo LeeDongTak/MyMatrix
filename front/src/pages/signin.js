@@ -59,8 +59,19 @@ function SignIn(){
                 <div className="signin_container">
                     <h1>안녕하세요 <span className="blue"> 성공일정</span>입니다. </h1>
                     <div className="signin_form">
-                        <input type="text" placeholder="이메일" id="email" onChange={(e)=>{setInputEmail(e.target.value)}} />
-                        <input type="password" placeholder="비밀번호" id="password" onChange={(e)=>{setInputPassword(e.target.value)}} />
+                        <input type="text" placeholder="이메일" id="email" 
+                            onKeyUp={ (e)=>{ 
+                                if(e.key === 'Enter'){
+                                    signin();
+                                }
+                            }  } onChange={(e)=>{setInputEmail(e.target.value)}} />
+                        
+                        <input type="password" placeholder="비밀번호" id="password" 
+                            onKeyUp={ (e)=>{ 
+                                if(e.key === 'Enter'){
+                                    signin();
+                                }
+                            }  } onChange={(e)=>{setInputPassword(e.target.value)}} />
                         <input type="button" value="로그인" id="signin" onClick={signin} />
                         <div className="signup_btn" onClick={()=>{ navigate('/signup') }}><a href='#'>회원가입</a></div>
                     </div>
