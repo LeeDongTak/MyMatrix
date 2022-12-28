@@ -48,49 +48,12 @@ function Matrix(props){
     useEffect(()=>{
         readTodo();
     },[props.todoData]);
-
-
-    // 일정 CUD
-    function cudController(event){
-        const token = localStorage.getItem("x-access-token");
-        if(!token){
-            return;
-        }
-        const target = event.target;
-        const targetTagName = target.tagName;
-        const eventType = event.type;
-        const key = event.key;
     
-        // create 이벤트 처리
-        if(targetTagName === "INPUT" && key === "Enter"){
-            createTodo(event, token);
-            return;
-        }
-        // update 이벤트 처리
-        
-        // 체크 박스
-        // if(target.className === "todo_tone" && eventType === "click"){
-        //     updateTodoDone(event, token);
-        //     return;
-        // }
-        // // 컨텐츠 업데이트
-        // const firstClassName = target.className.split(" ")[0];
-        // console.log(target);
-        // if(firstClassName === "todo_update" && eventType === "click"){
-        //     updateTodoContents(event, token);
-        //     return;
-        // }
-    
-        // // delete 이벤트 처리
-        // if(firstClassName === "todo_delete" && eventType === "click"){
-        //     deleteTodo(event, token);
-        //     return;
-        // }
-    }
-    
+    // 일정 생성
     async function createTodo(e){
         const contents = todoContent;
         const type = e.target.closest(".matrix_item").id;
+        // 토큰 검사
         const token = localStorage.getItem("x-access-token");
         if(!token){
             return;
@@ -127,114 +90,115 @@ function Matrix(props){
         }
     }
     
-    // export async function updateTodoDone(event, token){
-    //     const status = event.target.checked ? 'C' : 'A';
-    //     const todoIdx = event.target.closest(".list_item").id;
+    // 체크박스
+    async function updateTodoDone(e){
+        const status = e.target.checked ? 'C' : 'A';
+        const todoIdx = e.target.closest(".list_item").id;
+        // 토큰 검사
+        const token = localStorage.getItem("x-access-token");
+        if(!token){
+            return;
+        }
+
+        const config = {
+            method: "patch",
+            url: url + "/todo",
+            headers: {"x-access-token": token},
+            data: {
+                todoIdx: todoIdx, 
+                status: status
+            },
+        }
     
-    //     const config = {
-    //         method: "patch",
-    //         url: url + "/todo",
-    //         headers: {"x-access-token": token},
-    //         data: {
-    //             todoIdx: todoIdx, 
-    //             status: status
-    //         },
-    //     }
+        try {
+            const res = await axios(config);
+            if(res.data.code !== 200){
+                alert(res.data.message);
+                return false;
+            }
     
-    //     try {
-    //         const res = await axios(config);
-    //         if(res.data.code !== 200){
-    //             alert(res.data.message);
-    //             return false;
-    //         }
+            // DOM 업데이트
+            readTodo();
+            e.target.value = "";
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+    }
     
-    //         // DOM 업데이트
-    //         readTodo();
-    //         event.target.value = "";
-    //     } catch (err) {
-    //         console.error(err);
-    //         return false;
-    //     }
-    // }
+    // 컨텐츠 업데이트
+    async function updateTodoContents(e){
+        const contents = prompt("내용을 입력해 주세요.");
+        const todoIdx = e.target.closest(".list_item").id;
+        // 토큰 검사
+        const token = localStorage.getItem("x-access-token");
+        if(!token){
+            return;
+        }
     
-    // export async function updateTodoContents(event, token){
-    //     const contents = prompt("내용을 입력해 주세요.");
-    //     const todoIdx = event.target.closest(".list_item").id;
+        const config = {
+            method: "patch",
+            url: url + "/todo",
+            headers: {"x-access-token": token},
+            data: {
+                todoIdx: todoIdx, 
+                contents: contents
+            },
+        }
     
-    //     const config = {
-    //         method: "patch",
-    //         url: url + "/todo",
-    //         headers: {"x-access-token": token},
-    //         data: {
-    //             todoIdx: todoIdx, 
-    //             contents: contents
-    //         },
-    //     }
+        try {
+            const res = await axios(config);
+            if(res.data.code !== 200){
+                alert(res.data.message);
+                return false;
+            }
     
-    //     try {
-    //         const res = await axios(config);
-    //         if(res.data.code !== 200){
-    //             alert(res.data.message);
-    //             return false;
-    //         }
+            // DOM 업데이트
+            readTodo();
+            e.target.value = "";
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+    }
     
-    //         // DOM 업데이트
-    //         readTodo();
-    //         event.target.value = "";
-    //     } catch (err) {
-    //         console.error(err);
-    //         return false;
-    //     }
-    // }
-    
-    // export async function deleteTodo(event, token){
-    //     const todoIdx = event.target.closest(".list_item").id;
-    
-    //     const useConfirm = (message = null, onConfirm, onCancel) => {
-    //         if (!onConfirm || typeof onConfirm !== "function") {
-    //           return;
-    //         }
-    //         if (onCancel && typeof onCancel !== "function") {
-    //           return;
-    //         }
-          
-    //         const confirmAction = () => {
-    //           if (window.confirm(message)) {
-    //             onConfirm();
-    //           } else {
-    //             onCancel();
-    //           }
-    //         };
-          
-    //         return confirmAction;
-    //       };
+    // delete 이벤트 처리
+    async function deleteTodo(e){
+        if (window.confirm("삭제하시겠습니까? 삭제 후에는 복구가 어렵습니다. ")) {
+            const todoIdx = e.target.closest(".list_item").id;
+            // 토큰 검사
+            const token = localStorage.getItem("x-access-token");
+            if(!token){
+                return;
+            }
         
-    
-    
-    
-    //     if(!useConfirm){
-    //         return false;
-    //     }
-    //     const config = {
-    //         method: "delete",
-    //         url: url + "/todo/"+ todoIdx,
-    //         headers: {"x-access-token": token},
-    //     }
-    
-    //     try {
-    //         const res = await axios(config);
-    //         if(res.data.code !== 200){
-    //             alert(res.data.message);
-    //             return false;
-    //         }
-    
-    //         // DOM 업데이트
-    //         readTodo();
-    //     } catch (err) {
-    //         console.error(err);
-    //         return false;
-    //     }
-    // }
+            const config = {
+                method: "delete",
+                url: url + "/todo/"+ todoIdx,
+                headers: {"x-access-token": token},
+            }
+        
+            try {
+                const res = await axios(config);
+                if(res.data.code !== 200){
+                    alert(res.data.message);
+                    return false;
+                }
+        
+                // DOM 업데이트
+                readTodo();
+            } catch (err) {
+                console.error(err);
+                return false;
+            }
+            
+            alert("삭제되었습니다. ");
+          } else {
+            alert("취소합니다.");
+            return;
+          }
+        
+    }
     return(
         <div id='main'>
             <div className="inner"> 
@@ -275,6 +239,7 @@ function Matrix(props){
                                     <li className="list_item" id={i.todoIdx} key={i.todoIdx}>
                                         <div className="done_text_container">
                                             <input type="checkbox" className='todo_tone'
+                                                onClick={updateTodoDone}
                                                 checked={
                                                     i.status === 'C'
                                                     ? "checked"
@@ -285,8 +250,8 @@ function Matrix(props){
                                             <p className="todo_text">{i.contents}</p>
                                         </div>
                                         <div className="update_delete_container">
-                                            <i className="todo_update fa-solid fa-pencil"></i>
-                                            <i className="todo_delete fa-solid fa-trash-can"></i>
+                                            <i className="todo_update fa-solid fa-pencil" onClick={updateTodoContents}></i>
+                                            <i className="todo_delete fa-solid fa-trash-can" onClick={deleteTodo}></i>
                                         </div>
                                     </li>
                                     )
