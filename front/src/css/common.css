@@ -33,3 +33,6 @@ a{
 #main {
     flex: 1;
 }
+i{
+    margin: 0 0.5rem;
+}
