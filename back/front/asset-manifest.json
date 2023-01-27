@@ -1,17 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.6efc2453.css",
-    "main.js": "/static/js/main.a33cd5ea.js",
-    "static/js/787.7779389a.chunk.js": "/static/js/787.7779389a.chunk.js",
-    "static/media/eisenhower.png": "/static/media/eisenhower.cd5321e8513e8b487cf2.png",
-    "service-worker.js": "/service-worker.js",
-    "index.html": "/index.html",
-    "main.6efc2453.css.map": "/static/css/main.6efc2453.css.map",
-    "main.a33cd5ea.js.map": "/static/js/main.a33cd5ea.js.map",
-    "787.7779389a.chunk.js.map": "/static/js/787.7779389a.chunk.js.map"
+    "main.css": "./static/css/main.6d141e98.css",
+    "main.js": "./static/js/main.5dc9603a.js",
+    "static/js/27.0ea6e190.chunk.js": "./static/js/27.0ea6e190.chunk.js",
+    "static/media/eisenhower.png": "./static/media/eisenhower.cd5321e8513e8b487cf2.png",
+    "service-worker.js": "./service-worker.js",
+    "index.html": "./index.html"
   },
   "entrypoints": [
-    "static/css/main.6efc2453.css",
-    "static/js/main.a33cd5ea.js"
+    "static/css/main.6d141e98.css",
+    "static/js/main.5dc9603a.js"
   ]
 }
