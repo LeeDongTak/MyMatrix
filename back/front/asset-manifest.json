@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "./static/css/main.6d141e98.css",
-    "main.js": "./static/js/main.383d7b0f.js",
+    "main.css": "./static/css/main.0349ce1b.css",
+    "main.js": "./static/js/main.ecf3cf5b.js",
     "static/js/27.0ea6e190.chunk.js": "./static/js/27.0ea6e190.chunk.js",
     "static/media/eisenhower.png": "./static/media/eisenhower.cd5321e8513e8b487cf2.png",
     "service-worker.js": "./service-worker.js",
     "index.html": "./index.html"
   },
   "entrypoints": [
-    "static/css/main.6d141e98.css",
-    "static/js/main.383d7b0f.js"
+    "static/css/main.0349ce1b.css",
+    "static/js/main.ecf3cf5b.js"
   ]
 }
